@@ -1,5 +1,5 @@
 import { use, useState } from 'react';
-import States from '../Stares/States';
+import States from '../States/States';
 import OrderCard from '../Card/OrderCard';
 import CookingCard from '../Card/CookingCard';
 import { toast } from 'react-toastify';
@@ -25,13 +25,14 @@ const OrderContainer = ({ ordersPromise }) => {
 
   //   Handle Cooking
   const handleCooking = (order) => {
-    // order.cookedAt = new Date().toLocaleTimeString();
+    order.cookedAt = new Date().toLocaleTimeString();
     const newReadyItems = [...readyItems, order];
     setReadyItems(newReadyItems);
+
     const remaining = cookingItems.filter((item) => item.id !== order.id);
     setCookingItems(remaining);
 
-    const remainingOrders = orders.filter((item) => item.id);
+    const remainingOrders = orders.filter((item) => item.id !== order.id);
     setOrders(remainingOrders);
   };
   return (
@@ -68,7 +69,7 @@ const OrderContainer = ({ ordersPromise }) => {
           <h2 className="font-bold text-4xl">Order Ready</h2>
           <div className="space-y-3">
             {readyItems.map((order) => (
-              <ReadyCard order={order} />
+              <ReadyCard order={order} key={order.id} />
             ))}
           </div>
         </div>

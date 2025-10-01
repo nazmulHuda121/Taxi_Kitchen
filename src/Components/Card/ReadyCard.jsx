@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ReadyCard = ({ order }) => {
+  console.log(order);
   return (
     <div className="shadow p-5 border rounded-xl border-amber-400">
       <h2 className="text-2xl font-bold">{order.order_title}</h2>
