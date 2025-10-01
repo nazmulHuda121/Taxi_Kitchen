@@ -3,6 +3,7 @@ import States from '../Stares/States';
 import OrderCard from '../Card/OrderCard';
 import CookingCard from '../Card/CookingCard';
 import { toast } from 'react-toastify';
+import ReadyCard from '../Card/readyCard';
 
 const OrderContainer = ({ ordersPromise }) => {
   const data = use(ordersPromise);
@@ -62,6 +63,12 @@ const OrderContainer = ({ ordersPromise }) => {
                 key={order.id}
                 order={order}
               ></CookingCard>
+            ))}
+          </div>
+          <h2 className="font-bold text-4xl">Order Ready</h2>
+          <div className="space-y-3">
+            {readyItems.map((order) => (
+              <ReadyCard order={order} />
             ))}
           </div>
         </div>
